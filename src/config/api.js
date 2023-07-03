@@ -1,4 +1,4 @@
-const BaseUrl = "http://18.143.151.110:8000";
+const BaseUrl = "http://0.0.0.0:8000";
 
 export const API_URL = {
   //ABL
