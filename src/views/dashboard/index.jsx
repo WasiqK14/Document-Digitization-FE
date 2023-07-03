@@ -83,7 +83,7 @@ function Dashboard() {
           placeholder="Select option"
           marginTop="10px"
           w="40%"
-          h="40%"
+          h="50px"
           borderRadius="0px"
           border="1px solid #1b1c1e"
           focusBorderColor="1px solid #1b1c1e"

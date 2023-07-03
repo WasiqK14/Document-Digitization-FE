@@ -1,12 +1,14 @@
 version: "3.8"
 
 services:
-  frontend:
-    image: frontend
-    build: ./frontend
+  app:
+    container_name: document-frontend
+    image: document-frontend-image
+    build: 
+      context: .
+    
     stdin_open: true
     tty: true
-    ports:
-      - "3000:3000"
     volumes:
-      - ./frontend:/app
+      - /app
+    network_mode: "host"
