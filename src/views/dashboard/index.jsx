@@ -28,13 +28,19 @@ function Dashboard() {
       return;
     }
 
-    const formdata = new FormData();
-    formdata.append("file", file);
-    
+    // console.log(file);
+    // console.log(file.length)
 
-    for(let[key,value] of formdata.entries()){
-      console.log(key,value);
+    const formdata = new FormData();
+    for (let i = 0; i < file.length; i++) {
+      formdata.append("files", file[i]);
     }
+
+    for (let [key, value] of formdata.entries()) {
+      console.log(key, value);
+    }
+    //print length of formdata
+    console.log(formdata.getAll("files"));
 
     if (form === "partnership") {
       setIsLoading(true);
