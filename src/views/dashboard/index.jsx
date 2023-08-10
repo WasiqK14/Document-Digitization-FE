@@ -68,7 +68,7 @@ function Dashboard() {
       </Flex>
       <Flex flexDirection="column" justify="center" align="center">
         <Text fontSize="2xl" color="gray.500" marginTop="20px">
-          Upload your document here
+          Upload your images here
         </Text>
         <Input
           placeholder="Enter your text here"
