@@ -13,35 +13,46 @@ import { postRequest } from "../../hooks/usePost";
 
 function Dashboard() {
   const [file, setFile] = useState();
-  const [bank, setBank] = useState("");
+  const [form, setForm] = useState("");
   const [jsonObj, setJsonObj] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleFileChange = (e) => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
-    }
+    const selectedFiles = Array.from(e.target.files);
+    setFile(selectedFiles);
   };
 
   const postToServer = async () => {
-    if (!file && !bank) {
+    if (!file && !form) {
       console.log("No file selected");
       return;
     }
 
-    var formdata = new FormData();
+    const formdata = new FormData();
     formdata.append("file", file);
+    
 
-    if (bank === "fbl") {
+    for(let[key,value] of formdata.entries()){
+      console.log(key,value);
+    }
+
+    if (form === "partnership") {
       setIsLoading(true);
-      const response = await postRequest(API_URL.POSTTOFBL, formdata);
+      const response = await postRequest(API_URL.POSTTOPARTNERSHIP, formdata);
       console.log(response);
       setJsonObj(response);
       setIsLoading(false);
     }
-    if (bank === "abl") {
+    if (form === "private") {
       setIsLoading(true);
-      const response = await postRequest(API_URL.POSTTOABL, formdata);
+      const response = await postRequest(API_URL.POSTTOPRIVATE, formdata);
+      console.log(response);
+      setJsonObj(response);
+      setIsLoading(false);
+    }
+    if (form === "trust") {
+      setIsLoading(true);
+      const response = await postRequest(API_URL.POSTTOTRUST, formdata);
       console.log(response);
       setJsonObj(response);
       setIsLoading(false);
@@ -73,11 +84,12 @@ function Dashboard() {
           border="1px solid #1b1c1e"
           cursor="pointer"
           onChange={handleFileChange}
+          multiple
         />
       </Flex>
       <Flex flexDirection="column" justify="center" align="center">
         <Text fontSize="2xl" color="gray.500" marginTop="10px">
-          Select your Bank
+          Select your Form
         </Text>
         <Select
           placeholder="Select option"
@@ -92,11 +104,12 @@ function Dashboard() {
             border: "1px solid #1b1c1e",
             boxShadow: "lg",
           }}
-          value={bank}
-          onChange={(e) => setBank(e.target.value)}
+          value={form}
+          onChange={(e) => setForm(e.target.value)}
         >
-          <option value="fbl">Faisal Bank</option>
-          <option value="abl">Allied Bank</option>
+          <option value="partnership">Partnership</option>
+          <option value="private">Private</option>
+          <option value="trust">Trust</option>
         </Select>
       </Flex>
       <Flex flexDirection="column" justify="center" align="center">

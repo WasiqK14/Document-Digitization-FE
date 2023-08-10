@@ -4,11 +4,14 @@ services:
   app:
     container_name: document-frontend
     image: document-frontend-image
-    build: 
+    build:
       context: .
-    
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    command: sh -c "npm install && npm run dev -- --host"
     stdin_open: true
     tty: true
     volumes:
-      - /app
-    network_mode: "host"
+      - .:/app
+    # network_mode: "host"
