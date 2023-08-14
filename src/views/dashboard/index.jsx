@@ -28,9 +28,6 @@ function Dashboard() {
       return;
     }
 
-    // console.log(file);
-    // console.log(file.length)
-
     const formdata = new FormData();
     for (let i = 0; i < file.length; i++) {
       formdata.append("files", file[i]);
@@ -39,8 +36,8 @@ function Dashboard() {
     for (let [key, value] of formdata.entries()) {
       console.log(key, value);
     }
-    //print length of formdata
-    console.log(formdata.getAll("files"));
+    
+    
 
     if (form === "partnership") {
       setIsLoading(true);
@@ -59,6 +56,13 @@ function Dashboard() {
     if (form === "trust") {
       setIsLoading(true);
       const response = await postRequest(API_URL.POSTTOTRUST, formdata);
+      console.log(response);
+      setJsonObj(response);
+      setIsLoading(false);
+    }
+    if (form === "deposit") {
+      setIsLoading(true);
+      const response = await postRequest(API_URL.POSTTODEPOSIT, formdata);
       console.log(response);
       setJsonObj(response);
       setIsLoading(false);
@@ -116,6 +120,7 @@ function Dashboard() {
           <option value="partnership">Partnership</option>
           <option value="private">Private</option>
           <option value="trust">Trust</option>
+          <option value="deposit">Deposit</option>
         </Select>
       </Flex>
       <Flex flexDirection="column" justify="center" align="center">

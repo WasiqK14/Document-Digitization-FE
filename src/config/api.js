@@ -7,4 +7,6 @@ export const API_URL = {
   POSTTOPRIVATE: `${BaseUrl}/private_files`,
   //TRUST
   POSTTOTRUST: `${BaseUrl}/ngo_files`,
+  //CASH DEPOSIT
+  POSTTODEPOSIT: `${BaseUrl}/deposit_slip`,
 };
